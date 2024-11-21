@@ -37,6 +37,18 @@ public class Function {
         private static final String RESERVATION_URL = ROOT_URL + "/reservations";
         private static final String ROOM_URL = ROOT_URL + "/rooms";
 
+        private OkHttpClient client;
+
+        public Function(){
+                super();
+                this.client = new OkHttpClient();
+        }
+
+        public Function(OkHttpClient client){
+                super();
+                this.client = client;
+        }
+
         /**
          * This function listens at endpoint "/api/HttpExample". Two ways to invoke it
          * using "curl" command in bash:
@@ -108,7 +120,6 @@ public class Function {
         }
 
         private List<Rooms> getAllRooms() throws IOException {
-                OkHttpClient client = new OkHttpClient();
                 Gson gson = new Gson();
 
                 Request reqRooms = new Request.Builder()
@@ -132,7 +143,6 @@ public class Function {
         }
 
         private List<Reservations> getReservationFromDate(Date date) throws IOException {
-                OkHttpClient client = new OkHttpClient();
                 Gson gson = new Gson();
 
                 Request reqReservation = new Request.Builder()
